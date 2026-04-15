@@ -1,10 +1,10 @@
 import { Github, Linkedin, Twitter, Mail, ArrowUpRight } from 'lucide-react';
 
 const socials = [
-  { name: 'GitHub', icon: <Github />, href: '#', color: 'hover:bg-gray-800 hover:text-white' },
-  { name: 'LinkedIn', icon: <Linkedin />, href: '#', color: 'hover:bg-blue-600 hover:text-white' },
-  { name: 'Twitter', icon: <Twitter />, href: '#', color: 'hover:bg-sky-500 hover:text-white' },
-  { name: 'Email', icon: <Mail />, href: '#', color: 'hover:bg-amber-500 hover:text-white' },
+  { name: 'GitHub', icon: <Github />, href: 'https://github.com/rohit20v', color: 'hover:bg-gray-800 hover:text-white' },
+  { name: 'LinkedIn', icon: <Linkedin />, href: 'https://it.linkedin.com/in/dev-rohit-verma', color: 'hover:bg-blue-600 hover:text-white' },
+  { name: 'Twitter', icon: <Twitter />, href: 'https://x.com/rohit_verma_dev?s=21', color: 'hover:bg-sky-500 hover:text-white' },
+  { name: 'Email', icon: <Mail />, href: 'mailto:verma.rohit.1203@gmail.com', color: 'hover:bg-amber-500 hover:text-white' },
 ];
 
 const Socials = () => {
