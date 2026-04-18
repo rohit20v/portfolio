@@ -6,6 +6,7 @@ import Socials from './components/Socials';
 import CustomCursor from './components/CustomCursor';
 import ThreeBackground from './components/ThreeBackground';
 import {Moon, Sun} from 'lucide-react';
+import GradualBlur from "./components/GradualBlur.tsx";
 
 function App() {
     const [isDark, setIsDark] = useState(true);
@@ -19,25 +20,38 @@ function App() {
     }, [isDark]);
 
     return (
-        <div className="relative min-h-screen transition-colors duration-500">
+        <div className="relative min-h-screen transition-colors  overflow-hidden">
             <CustomCursor/>
             <ThreeBackground/>
             <Navbar isDark={isDark}/>
 
+            <main style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}>
+                <div style={{ height: '100%', overflowY: 'auto', padding: '6rem 2rem' }}>
+                    <Hero isDark={isDark} />
+                    {/*<Projects/>*/}
+                    <Skills />
+                    <Socials />
+                </div>
+
+                <GradualBlur
+                    target="parent"
+                    position="bottom"
+                    height="12rem"
+                    strength={2}
+                    divCount={5}
+                    curve="bezier"
+                    exponential
+                    opacity={1}
+                />
+            </main>
+
             {/* Theme Toggle */}
             <button
                 onClick={() => setIsDark(!isDark)}
-                className="fixed bottom-8 right-8 z-[100] w-14 h-14 bg-foreground/5 backdrop-blur-xl border border-foreground/10 rounded-full flex items-center justify-center hover:scale-125 transition-all active:scale-95 hover-trigger"
+                className="fixed bottom-8 right-8 z-[1000] w-14 h-14 bg-foreground/5 backdrop-blur-xl border border-foreground/10 rounded-full flex items-center justify-center hover:scale-125 transition-all active:scale-95 hover-trigger"
             >
                 {isDark ? <Sun size={24}/> : <Moon size={24}/>}
             </button>
-
-            <main>
-                <Hero isDark={isDark}/>
-                {/*<Projects />*/}
-                <Skills/>
-                <Socials/>
-            </main>
         </div>
     );
 }
