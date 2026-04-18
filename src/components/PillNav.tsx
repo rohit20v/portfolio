@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
+import React, {useEffect, useRef, useState} from 'react';
+import {gsap} from 'gsap';
+import Logo from "../assets/Logo.tsx";
 
 export type PillNavItem = {
     label: string;
@@ -8,7 +9,7 @@ export type PillNavItem = {
 };
 
 export interface PillNavProps {
-    logo: string;
+    logo?: string;
     logoAlt?: string;
     items: PillNavItem[];
     activeHref?: string;
@@ -24,10 +25,9 @@ export interface PillNavProps {
 }
 
 const PillNav: React.FC<PillNavProps> = ({
-                                             logo,
-                                             logoAlt = 'Logo',
                                              items,
                                              activeHref,
+                                             theme,
                                              className = '',
                                              ease = 'power3.easeOut',
                                              baseColor = 'var(--text)',
@@ -38,14 +38,22 @@ const PillNav: React.FC<PillNavProps> = ({
                                              initialLoadAnimation = true,
                                          }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const circleRefs = useRef<Array<HTMLSpanElement | null>>([]);
     const tlRefs = useRef<Array<gsap.core.Timeline | null>>([]);
     const activeTweenRefs = useRef<Array<gsap.core.Tween | null>>([]);
-    const logoImgRef = useRef<HTMLImageElement | null>(null);
     const hamburgerRef = useRef<HTMLButtonElement | null>(null);
     const mobileMenuRef = useRef<HTMLDivElement | null>(null);
     const navItemsRef = useRef<HTMLDivElement | null>(null);
     const logoRef = useRef<HTMLElement | null>(null);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 10);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     useEffect(() => {
         const layout = () => {
@@ -54,7 +62,7 @@ const PillNav: React.FC<PillNavProps> = ({
 
                 const pill = circle.parentElement as HTMLElement;
                 const rect = pill.getBoundingClientRect();
-                const { width: w, height: h } = rect;
+                const {width: w, height: h} = rect;
                 const R = ((w * w) / 4 + h * h) / (2 * h);
                 const D = Math.ceil(2 * R) + 2;
                 const delta = Math.ceil(R - Math.sqrt(Math.max(0, R * R - (w * w) / 4))) + 1;
@@ -73,24 +81,24 @@ const PillNav: React.FC<PillNavProps> = ({
                 const label = pill.querySelector<HTMLElement>('.pill-label');
                 const white = pill.querySelector<HTMLElement>('.pill-label-hover');
 
-                if (label) gsap.set(label, { y: 0 });
-                if (white) gsap.set(white, { y: h + 12, opacity: 0 });
+                if (label) gsap.set(label, {y: 0});
+                if (white) gsap.set(white, {y: h + 12, opacity: 0});
 
                 const index = circleRefs.current.indexOf(circle);
                 if (index === -1) return;
 
                 tlRefs.current[index]?.kill();
-                const tl = gsap.timeline({ paused: true });
+                const tl = gsap.timeline({paused: true});
 
-                tl.to(circle, { scale: 1.2, xPercent: -50, duration: 2, ease, overwrite: 'auto' }, 0);
+                tl.to(circle, {scale: 1.2, xPercent: -50, duration: 2, ease, overwrite: 'auto'}, 0);
 
                 if (label) {
-                    tl.to(label, { y: -(h + 8), duration: 2, ease, overwrite: 'auto' }, 0);
+                    tl.to(label, {y: -(h + 8), duration: 2, ease, overwrite: 'auto'}, 0);
                 }
 
                 if (white) {
-                    gsap.set(white, { y: Math.ceil(h + 100), opacity: 0 });
-                    tl.to(white, { y: 0, opacity: 1, duration: 2, ease, overwrite: 'auto' }, 0);
+                    gsap.set(white, {y: Math.ceil(h + 100), opacity: 0});
+                    tl.to(white, {y: 0, opacity: 1, duration: 2, ease, overwrite: 'auto'}, 0);
                 }
 
                 tlRefs.current[index] = tl;
@@ -103,12 +111,13 @@ const PillNav: React.FC<PillNavProps> = ({
         window.addEventListener('resize', onResize);
 
         if (document.fonts) {
-            document.fonts.ready.then(layout).catch(() => {});
+            document.fonts.ready.then(layout).catch(() => {
+            });
         }
 
         const menu = mobileMenuRef.current;
         if (menu) {
-            gsap.set(menu, { visibility: 'hidden', opacity: 0, scaleY: 1, y: 0 });
+            gsap.set(menu, {visibility: 'hidden', opacity: 0, scaleY: 1, y: 0});
         }
 
         if (initialLoadAnimation) {
@@ -116,7 +125,7 @@ const PillNav: React.FC<PillNavProps> = ({
             const navItems = navItemsRef.current;
 
             if (logo) {
-                gsap.set(logo, { scale: 0 });
+                gsap.set(logo, {scale: 0});
                 gsap.to(logo, {
                     scale: 1,
                     duration: 0.6,
@@ -125,7 +134,7 @@ const PillNav: React.FC<PillNavProps> = ({
             }
 
             if (navItems) {
-                gsap.set(navItems, { width: 0, overflow: 'hidden' });
+                gsap.set(navItems, {width: 0, overflow: 'hidden'});
                 gsap.to(navItems, {
                     width: 'auto',
                     duration: 0.6,
@@ -169,20 +178,20 @@ const PillNav: React.FC<PillNavProps> = ({
         if (hamburger) {
             const lines = hamburger.querySelectorAll('.hamburger-line');
             if (newState) {
-                gsap.to(lines[0], { rotation: 45, y: 3, duration: 0.3, ease });
-                gsap.to(lines[1], { rotation: -45, y: -3, duration: 0.3, ease });
+                gsap.to(lines[0], {rotation: 45, y: 3, duration: 0.3, ease});
+                gsap.to(lines[1], {rotation: -45, y: -3, duration: 0.3, ease});
             } else {
-                gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.3, ease });
-                gsap.to(lines[1], { rotation: 0, y: 0, duration: 0.3, ease });
+                gsap.to(lines[0], {rotation: 0, y: 0, duration: 0.3, ease});
+                gsap.to(lines[1], {rotation: 0, y: 0, duration: 0.3, ease});
             }
         }
 
         if (menu) {
             if (newState) {
-                gsap.set(menu, { visibility: 'visible' });
+                gsap.set(menu, {visibility: 'visible'});
                 gsap.fromTo(
                     menu,
-                    { opacity: 0, y: 10, scaleY: 1 },
+                    {opacity: 0, y: 10, scaleY: 1},
                     {
                         opacity: 1,
                         y: 0,
@@ -201,7 +210,7 @@ const PillNav: React.FC<PillNavProps> = ({
                     ease,
                     transformOrigin: 'top center',
                     onComplete: () => {
-                        gsap.set(menu, { visibility: 'hidden' });
+                        gsap.set(menu, {visibility: 'hidden'});
                     }
                 });
             }
@@ -222,31 +231,34 @@ const PillNav: React.FC<PillNavProps> = ({
     } as React.CSSProperties;
 
     return (
-        <div className="fixed top-[2em] z-[1000] w-full left-0 flex justify-center">
+        <div className={`fixed top-0 z-[1000] w-full left-0 flex justify-center transition-all duration-300 pointer-events-none ${
+            scrolled ? "py-2" : "py-6"
+        }`}>
             <nav
-                className={`w-full md:w-full flex items-center justify-between md:justify-center box-border px-4 md:px-8 pointer-events-auto ${className}`}
+                className={`flex items-center justify-between md:grid md:grid-cols-3 md:items-center box-border px-6 md:px-12 pointer-events-auto transition-all duration-300 ${
+                    scrolled 
+                    ? "w-[80%] max-w-8xl backdrop-blur-md backdrop-brightness-125 backdrop-contrast-125 bg-white/10 border border-white/10 rounded-br-4xl rounded-tr-md rounded-bl-md rounded-tl-4xl py-4 shadow-lg" 
+                    : "w-full bg-transparent border-transparent py-0"
+                } ${className}`}
                 aria-label="Primary"
                 style={cssVars}
             >
-                <a
-                    href="#"
-                    aria-label="Home"
-                    ref={el => {
-                        logoRef.current = el;
-                    }}
-                    className="rounded-full p-2 inline-flex items-center justify-center hover:scale-110 transition-all ease-in-out duration-200"
-                    style={{
-                        width: 'var(--nav-h)',
-                        height: 'var(--nav-h)',
-                        background: 'var(--base, #000)'
-                    }}
-                >
-                    <img src={logo} alt={logoAlt} ref={logoImgRef} className="w-full h-full object-cover object-center scale-[3] block" />
-                </a>
+                <div className="flex justify-start">
+                    <a
+                        href="#"
+                        aria-label="Home"
+                        ref={el => {
+                            logoRef.current = el;
+                        }}
+                        className="rounded-full inline-flex items-center justify-center hover:scale-110 transition-all ease-in-out duration-200"
+                    >
+                        <Logo color={theme !== 'dark' ? '#000' : '#fff'} styles={'md:scale-200 scale-150 transition-all duration-200'} />
+                    </a>
+                </div>
 
                 <div
                     ref={navItemsRef}
-                    className="hidden md:flex relative items-center rounded-full mx-auto"
+                    className="hidden md:flex relative items-center rounded-full justify-self-center"
                     style={{
                         height: 'var(--nav-h)',
                         background: 'var(--base, #000)'
@@ -255,7 +267,7 @@ const PillNav: React.FC<PillNavProps> = ({
                     <ul
                         role="menubar"
                         className="list-none flex items-stretch m-0 p-[3px] h-full"
-                        style={{ gap: 'var(--pill-gap)' }}
+                        style={{gap: 'var(--pill-gap)'}}
                     >
                         {items.map((item, i) => {
                             const isActive = activeHref === item.href;
@@ -283,7 +295,7 @@ const PillNav: React.FC<PillNavProps> = ({
                                     <span className="label-stack relative inline-block leading-[1] z-[2]">
                                     <span
                                         className="pill-label relative z-[2] inline-block leading-[1]"
-                                        style={{ willChange: 'transform' }}
+                                        style={{willChange: 'transform'}}
                                     >
                                       {item.label}
                                     </span>
@@ -301,7 +313,7 @@ const PillNav: React.FC<PillNavProps> = ({
                                     {isActive && (
                                         <span
                                             className="absolute left-1/2 -bottom-[6px] -translate-x-1/2 w-3 h-3 rounded-full z-[4]"
-                                            style={{ background: 'var(--base, #000)' }}
+                                            style={{background: 'var(--base, #000)'}}
                                             aria-hidden="true"
                                         />
                                     )}
@@ -330,6 +342,8 @@ const PillNav: React.FC<PillNavProps> = ({
                     </ul>
                 </div>
 
+                <div className="hidden md:block"></div>
+
                 <button
                     ref={hamburgerRef}
                     onClick={toggleMobileMenu}
@@ -344,11 +358,11 @@ const PillNav: React.FC<PillNavProps> = ({
                 >
                   <span
                       className="hamburger-line w-4 h-0.5 rounded origin-center transition-all duration-[10ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]"
-                      style={{ background: 'var(--pill-bg, #fff)' }}
+                      style={{background: 'var(--pill-bg, #fff)'}}
                   />
                     <span
                         className="hamburger-line w-4 h-0.5 rounded origin-center transition-all duration-[10ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]"
-                        style={{ background: 'var(--pill-bg, #fff)' }}
+                        style={{background: 'var(--pill-bg, #fff)'}}
                     />
                 </button>
             </nav>

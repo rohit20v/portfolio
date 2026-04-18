@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        heading: ['Plus Jakarta Sans', 'sans-serif'],
+        sans: ['Montserrat', 'Inter', 'sans-serif'],
+        heading: ['Montserrat', 'Plus Jakarta Sans', 'sans-serif'],
       },
       colors: {
         background: "hsl(var(--background))",
