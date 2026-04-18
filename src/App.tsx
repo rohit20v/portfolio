@@ -25,8 +25,8 @@ function App() {
             <ThreeBackground/>
             <Navbar isDark={isDark}/>
 
-            <main style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}>
-                <div style={{ height: '100%', overflowY: 'auto', padding: '6rem 2rem' }}>
+            <main style={{ position: 'relative', height: '100vh', overflow: 'hidden', scrollBehavior: 'smooth' }}>
+                <div style={{ height: '100%', overflowY: 'auto', padding: '6rem 2rem', scrollBehavior: 'smooth' }}>
                     <Hero isDark={isDark} />
                     {/*<Projects/>*/}
                     <Skills />
