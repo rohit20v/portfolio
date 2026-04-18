@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState} from 'react';
 import gsap from 'gsap';
 import {ArrowDown} from 'lucide-react';
+import PillAnimButton from "./PillAnimButton.tsx";
 
 const Hero = ({isDark} : {isDark: boolean}) => {
     const [mounted, setMounted] = useState(false);
@@ -116,14 +117,22 @@ const Hero = ({isDark} : {isDark: boolean}) => {
                     </p>
 
                     <div ref={buttonRef} className="flex gap-4 justify-center">
-                        {/*<button*/}
-                        {/*    className={`px-8 py-4 bg-${isDark ? 'white' : 'black'} text-${isDark ? 'black' : 'white'} rounded-full font-bold hover:scale-110 transition-transform ease-in-out`}>*/}
-                        {/*    View Projects*/}
-                        {/*</button>*/}
-                        <button
-                            className={`px-8 py-4 border border-${isDark ? 'white/20' : 'black'} text-${isDark ? 'white' : 'black'} rounded-full font-bold hover:bg-white/10 transition-colors`}>
-                            Get in Touch
-                        </button>
+                        <PillAnimButton
+                            label={"View Projects"} 
+                            href={"#projects"} 
+                            baseColor={isDark ? "white" : "black"}
+                            pillColor={isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.05)"}
+                            pillTextColor={isDark ? "white" : "black"}
+                            hoveredPillTextColor={isDark ? "black" : "white"}
+                        />
+                        <PillAnimButton
+                            label={"Get in Touch"} 
+                            href={"#contact"} 
+                            baseColor={isDark ? "white" : "black"}
+                            pillColor={isDark ? "white" : "black"}
+                            pillTextColor={isDark ? "black" : "white"}
+                            hoveredPillTextColor={isDark ? "black" : "white"}
+                        />
                     </div>
                 </div>
             </div>

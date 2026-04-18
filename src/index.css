@@ -87,3 +87,14 @@ html {
 ::-webkit-scrollbar-thumb {
     @apply bg-[var(--text)]/20 rounded-full hover:bg-[var(--text)]/40;
 }
+
+.button-arrow {
+    transition: all 0.2s;
+}
+
+.hover-trigger:hover > .button-arrow {
+    transform: rotate(45deg);
+    fill: white;
+    stroke: white;
+    scale: 110%;
+}
