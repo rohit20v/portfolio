@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Skills from './components/Skills';
 import Socials from './components/Socials';
 import CustomCursor from './components/CustomCursor';
+import CustomScrollbar from "./components/CustomScrollbar.tsx";
 import ThreeBackground from './components/ThreeBackground';
 import GradualBlur from "./components/GradualBlur.tsx";
 import ThemeToggler from "./components/ThemeToggler.tsx";
@@ -22,7 +23,8 @@ function App() {
     return (
         <div className="relative min-h-screen transition-colors">
             <CustomCursor/>
-            <ThreeBackground/>
+            <CustomScrollbar/>
+            <ThreeBackground isDark={isDark} />
             <Navbar isDark={isDark}/>
 
             <main className="relative px-8">
@@ -35,7 +37,7 @@ function App() {
                     target="page"
                     position="bottom"
                     height="8rem"
-                    strength={2}
+                    strength={1.4}
                     divCount={5}
                     curve="bezier"
                     exponential

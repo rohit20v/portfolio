@@ -3,7 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
-const ParticleField = () => {
+const ParticleField = ({isDark}: { isDark: boolean }) => {
   const ref = useRef<THREE.Points>(null);
   const scrollRef = useRef(0);
 
@@ -32,8 +32,8 @@ const ParticleField = () => {
     <Points ref={ref} positions={particles} stride={3} frustumCulled={false}>
       <PointMaterial
         transparent
-        color="#ffffff"
-        size={0.005}
+        color={isDark ? '#fff' : '#000'}
+        size={isDark ? 0.005 : 0.008}
         sizeAttenuation={true}
         depthWrite={false}
       />
@@ -41,11 +41,11 @@ const ParticleField = () => {
   );
 };
 
-const ThreeBackground = () => {
+const ThreeBackground = ({isDark}: { isDark: boolean }) => {
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none">
       <Canvas camera={{ position: [0, 0, 1] }}>
-        <ParticleField />
+        <ParticleField isDark={isDark}/>
       </Canvas>
     </div>
   );

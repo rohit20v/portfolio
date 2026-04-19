@@ -27,7 +27,7 @@ const Socials = () => {
     ];
 
     return (
-        <section id="contact" className="pb-32 px-6">
+        <section id="contact" className="pb-32 pt-16 px-6">
             <div className="max-w-7xl mx-auto text-center">
                 <LayoutGroup>
                     <motion.h2
@@ -79,7 +79,7 @@ const Socials = () => {
 
                 <footer
                     className="border-t border-white/10 pt-12 text-gray-500 text-sm flex flex-col md:flex-row items-center justify-between gap-6">
-                    <p>© 2026 Developer Portfolio. All rights reserved.</p>
+                    <p>© 2026 Rohit Verma. All rights reserved.</p>
                     <div className="flex gap-8">
                         <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
                         <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
