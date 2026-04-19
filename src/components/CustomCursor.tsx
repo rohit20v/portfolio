@@ -32,8 +32,8 @@ const CustomCursor = () => {
           target.closest('.hover-trigger')) {
         gsap.to(follower, {
           scale: 1.5,
-          backgroundColor: 'rgba(128, 128, 128, 0.1)',
-          borderColor: 'rgba(128, 128, 128, 0.5)',
+          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          borderColor: 'rgba(255, 255, 255, 0.5)',
           duration: 0.3,
         });
         gsap.to(cursor, {
@@ -51,7 +51,7 @@ const CustomCursor = () => {
         gsap.to(follower, {
           scale: 1,
           backgroundColor: 'transparent',
-          borderColor: 'rgba(128, 128, 128, 0.3)',
+          borderColor: 'rgba(255, 255, 255, 0.3)',
           duration: 0.3,
         });
         gsap.to(cursor, {

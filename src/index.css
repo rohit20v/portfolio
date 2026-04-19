@@ -35,6 +35,34 @@ html {
     --cube-face: #111111;
 }
 
+::selection {
+    background-color: #6859ff;
+    color: #fff;
+}
+
+/*** Mozilla based browsers ***/
+::-moz-selection {
+    background-color: #6859ff;
+    color: #fff;
+}
+
+/***For Other Browsers ***/
+::-o-selection {
+    background-color: #6859ff;
+    color: #fff;
+}
+
+::-ms-selection {
+    background-color: #6859ff;
+    color: #fff;
+}
+
+/*** For Webkit ***/
+::-webkit-selection {
+    background-color: #6859ff;
+    color: #fff;
+}
+
 @layer base {
     body {
         @apply bg-background text-foreground transition-colors duration-500 font-sans antialiased;
@@ -69,11 +97,11 @@ html {
 
 /* Custom Cursor */
 .custom-cursor {
-    @apply fixed top-0 left-0 w-2.5 h-2.5 bg-[var(--text)] rounded-full pointer-events-none z-[110000] mix-blend-difference;
+    @apply fixed top-0 left-0 w-2.5 h-2.5 bg-white rounded-full pointer-events-none z-[110000] mix-blend-difference;
     }
 
-    .cursor-follower {
-    @apply fixed top-0 left-0 w-10 h-10 border border-[var(--text)]/30 rounded-full pointer-events-none z-[109999];
+.custom-cursor-follower {
+    @apply fixed top-0 left-0 w-10 h-10 border border-white/30 rounded-full pointer-events-none z-[109999] mix-blend-difference;
     }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
