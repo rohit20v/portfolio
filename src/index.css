@@ -68,12 +68,12 @@ html {
 
 /* Custom Cursor */
 .custom-cursor {
-    @apply fixed top-0 left-0 w-2.5 h-2.5 bg-[var(--text)] rounded-full pointer-events-none z-[9999] mix-blend-difference;
-}
+    @apply fixed top-0 left-0 w-2.5 h-2.5 bg-[var(--text)] rounded-full pointer-events-none z-[110000] mix-blend-difference;
+    }
 
-.custom-cursor-follower {
-    @apply fixed top-0 left-0 w-10 h-10 border border-[var(--text)]/30 rounded-full pointer-events-none z-[9998];
-}
+    .cursor-follower {
+    @apply fixed top-0 left-0 w-10 h-10 border border-[var(--text)]/30 rounded-full pointer-events-none z-[109999];
+    }
 
 /* Scrollbar */
 ::-webkit-scrollbar {

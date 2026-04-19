@@ -1,12 +1,7 @@
+import { navLinks } from "../utils/contants";
 import PillNav from './PillNav';
 
 const Navbar = ({isDark}: { isDark: boolean }) => {
-    const navLinks = [
-        {label: 'Home', href: '#'},
-        // { label: 'Projects', href: '#projects' },
-        {label: 'Skills', href: '#skills'},
-        {label: 'Contact', href: '#contact'},
-    ];
 
     return (
         <div className="pt-[84px]">

@@ -1,26 +1,12 @@
 import {ArrowUpRight, Github, Linkedin, Mail, Twitter} from 'lucide-react';
+import {socials} from "../utils/contants.ts";
 
-const socials = [
-    {name: 'GitHub', icon: <Github/>, href: 'https://github.com/rohit20v', color: 'hover:bg-gray-800 hover:text-white'},
-    {
-        name: 'LinkedIn',
-        icon: <Linkedin/>,
-        href: 'https://it.linkedin.com/in/dev-rohit-verma',
-        color: 'hover:bg-blue-600 hover:text-white'
-    },
-    {
-        name: 'Twitter',
-        icon: <Twitter/>,
-        href: 'https://x.com/rohit_verma_dev?s=21',
-        color: 'hover:bg-sky-500 hover:text-white'
-    },
-    {
-        name: 'Email',
-        icon: <Mail/>,
-        href: 'mailto:verma.rohit.1203@gmail.com',
-        color: 'hover:bg-amber-500 hover:text-white'
-    },
-];
+const iconMap = {
+    github: Github,
+    linkedin: Linkedin,
+    twitter: Twitter,
+    mail: Mail,
+};
 
 const Socials = () => {
     return (
@@ -30,15 +16,17 @@ const Socials = () => {
                     className="text-gradient">epic</span>.</h2>
 
                 <div className="flex flex-wrap justify-center gap-6 mb-20 rotate-button-arrow">
-                    {socials.map((social) => (
+                    {socials.map((social) => {
+                        const Icon = iconMap[social.icon];
+                        return (
                         <a
                             key={social.name}
                             href={social.href}
                             className={`flex items-center gap-3 px-8 py-4 glass rounded-full font-bold text-lg transition-all duration-300 hover:scale-110 ${social.color} hover-trigger`}
                         >
-                            {social.icon} {social.name} <ArrowUpRight size={18} className="opacity-50 button-arrow"/>
+                            <Icon key={social.name} /> {social.name} <ArrowUpRight size={18} className="opacity-50 button-arrow"/>
                         </a>
-                    ))}
+                    )})}
                 </div>
 
                 <footer
