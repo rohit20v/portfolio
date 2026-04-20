@@ -2,6 +2,8 @@ import {useEffect, useRef, useState} from 'react';
 import gsap from 'gsap';
 import {ArrowDown} from 'lucide-react';
 import PillAnimButton from "./PillAnimButton.tsx";
+import Terminal from "./Terminal.tsx";
+import { motion } from "motion/react";
 
 const Hero = ({isDark} : {isDark: boolean}) => {
     const [mounted, setMounted] = useState(false);
@@ -67,32 +69,21 @@ const Hero = ({isDark} : {isDark: boolean}) => {
     if (!mounted) return <div className="min-h-screen"/>;
 
     return (
-        <section className="relative w-full h-screen overflow-hidden" style={{perspective: '1000px'}}>
-
-            {/* BACKGROUND LAYER */}
-            {/*<div className="absolute inset-0 z-0 pointer-events-none">*/}
-            {/*    <LightRays*/}
-            {/*        raysOrigin="top-center"*/}
-            {/*        raysColor="#ffffff"*/}
-            {/*        raysSpeed={1}*/}
-            {/*        lightSpread={0.2}*/}
-            {/*        rayLength={6}*/}
-            {/*        followMouse={true}*/}
-            {/*        mouseInfluence={0.2}*/}
-            {/*        noiseAmount={0}*/}
-            {/*        distortion={0}*/}
-            {/*        className="custom-rays"*/}
-            {/*        pulsating={false}*/}
-            {/*        fadeDistance={1}*/}
-            {/*        saturation={1}*/}
-            {/*    />*/}
-            {/*    <div className="absolute inset-0"/>*/}
-            {/*</div>*/}
+        // todo replace pb with py
+        <section className="relative w-full min-h-screen flex items-center justify-center pb-20 overflow-hidden" style={{perspective: '1000px'}}>
 
             {/* CONTENT LAYER */}
-            <div className="relative z-50 flex flex-col items-center justify-center h-full px-6">
+            <div className="relative z-50 flex flex-col items-center justify-center w-full px-6">
+                
+                <div className="md:hidden w-full">
+                    <Terminal />
+                </div>
 
-                <div className="max-w-5xl text-center">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 1 }}
+                    className="max-w-5xl text-center">
                     <h1
                         ref={titleRef}
                         className="text-5xl md:text-8xl font-black tracking-tighter leading-tight mb-6"
@@ -134,7 +125,7 @@ const Hero = ({isDark} : {isDark: boolean}) => {
                             hoveredPillTextColor={isDark ? "black" : "white"}
                         />
                     </div>
-                </div>
+                </motion.div>
             </div>
 
             <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white/30 z-50">

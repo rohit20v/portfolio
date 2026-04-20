@@ -5,6 +5,7 @@ import Skills from './components/Skills';
 import Socials from './components/Socials';
 import CustomCursor from './components/CustomCursor';
 import CustomScrollbar from "./components/CustomScrollbar.tsx";
+import ScrollProgress from "./components/ScrollProgress.tsx";
 import ThreeBackground from './components/ThreeBackground';
 import GradualBlur from "./components/GradualBlur.tsx";
 import ThemeToggler from "./components/ThemeToggler.tsx";
@@ -22,6 +23,7 @@ function App() {
 
     return (
         <div className="relative min-h-screen transition-colors">
+            <ScrollProgress />
             <CustomCursor/>
             <CustomScrollbar/>
             <ThreeBackground isDark={isDark} />

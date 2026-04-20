@@ -13,7 +13,7 @@ const Navbar = ({isDark}: { isDark: boolean }) => {
                 theme={isDark ? "dark" : "light"}
                 hoveredPillTextColor={isDark ? "#000" : "#ffffff"}
             />
-            <div className="p-1 bg-amber-600 text-white font-bold text-sm text-center tracking-widest">
+            <div className="bg-amber-600 text-white font-bold text-sm text-center tracking-widest">
                 ⚠️STILL IN WIP!
             </div>
         </div>
