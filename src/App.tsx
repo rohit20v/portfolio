@@ -27,7 +27,7 @@ function App() {
             <ThreeBackground isDark={isDark} />
             <Navbar isDark={isDark}/>
 
-            <main className="relative px-8">
+            <main className="relative">
                 <Hero isDark={isDark}/>
                 {/*<Projects/>*/}
                 <Skills/>

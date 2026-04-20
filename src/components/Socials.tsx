@@ -3,6 +3,7 @@ import {ArrowUpRight, Github, Linkedin, Mail, Twitter} from 'lucide-react';
 import {socials} from "../utils/contants.ts";
 import RotatingText from "./RotatingText.tsx";
 import {motion, LayoutGroup} from "motion/react";
+import SoftAurora from "./SoftAurora.tsx";
 
 const iconMap = {
     github: Github,
@@ -27,8 +28,27 @@ const Socials = () => {
     ];
 
     return (
-        <section id="contact" className="pb-32 pt-16 px-6">
-            <div className="max-w-7xl mx-auto text-center">
+        <section id="contact" className="relative py-32 overflow-x-visible">
+            <div className="absolute inset-0 -top-70 -z-100 full-width">
+                <SoftAurora
+                    speed={0.8}
+                    scale={1.2}
+                    brightness={0.8}
+                    color1="#6859ff"
+                    color2="#ff0000"
+                    noiseFrequency={2.5}
+                    noiseAmplitude={1}
+                    bandHeight={0.5}
+                    bandSpread={1}
+                    octaveDecay={0.1}
+                    layerOffset={0}
+                    colorSpeed={2}
+                    enableMouseInteraction
+                    mouseInfluence={0.02}
+                />
+            </div>
+            <div className="max-w-7xl mx-auto text-center relative z-10 px-6">
+
                 <LayoutGroup>
                     <motion.h2
                         layout
