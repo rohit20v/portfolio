@@ -4,6 +4,7 @@ import {ArrowDown} from 'lucide-react';
 import PillAnimButton from "./PillAnimButton.tsx";
 import Terminal from "./Terminal.tsx";
 import { motion } from "motion/react";
+import NameSelector from "./NameSelector.tsx";
 
 const Hero = ({isDark} : {isDark: boolean}) => {
     const [mounted, setMounted] = useState(false);
@@ -84,9 +85,12 @@ const Hero = ({isDark} : {isDark: boolean}) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 1 }}
                     className="max-w-5xl text-center">
+                    
+                    <NameSelector isDark={isDark} />
+
                     <h1
                         ref={titleRef}
-                        className="text-5xl md:text-8xl font-black tracking-tighter leading-tight mb-6"
+                        className="text-5xl md:text-7xl font-black tracking-tighter leading-tight mb-6"
                     >
                         I build digital <br/>
                         <span className="inline-block relative h-[1.1em] overflow-hidden perspective-[1000px]">
@@ -103,7 +107,7 @@ const Hero = ({isDark} : {isDark: boolean}) => {
                         </span>
                     </h1>
 
-                    <p ref={subtitleRef} className="text-lg md:text-2xl mb-12 max-w-2xl mx-auto">
+                    <p ref={subtitleRef} className="text-lg md:text-xl mb-12 max-w-2xl mx-auto">
                         I build web apps that are fast, scalable, and don’t feel like a pain to use.
                     </p>
 

@@ -90,7 +90,7 @@ const PillNav: React.FC<PillNavProps> = ({
                         className="rounded-full inline-flex items-center justify-center hover:scale-110 transition-all ease-in-out duration-200"
                     >
                         <Logo color={theme !== 'dark' ? '#000' : '#fff'}
-                              styles={`${scrolled ? 'md:scale-210' : 'md:scale-230'} scale-160 transition-all duration-200 md:ml-20 ml-4`}/>
+                              styles={`md:scale-230 scale-160 transition-all duration-200 md:ml-20 ml-4`}/>
                     </a>
                 </div>
 
