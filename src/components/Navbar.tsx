@@ -4,8 +4,8 @@ import PillNav from './PillNav';
 const Navbar = ({isDark}: { isDark: boolean }) => {
 
     return (
-        <div className="pt-10">
-        {/*<div className="pt-[84px]">*/}
+        // <div className="pt-10">
+        <div className="pt-[84px]">
             <PillNav
                 items={navLinks}
                 baseColor={isDark ? "rgba(255,255,255,0.15)" : "rgb(0 0 0 / 0.20)"}
@@ -14,6 +14,9 @@ const Navbar = ({isDark}: { isDark: boolean }) => {
                 theme={isDark ? "dark" : "light"}
                 hoveredPillTextColor={isDark ? "#000" : "#ffffff"}
             />
+            <div className="bg-amber-600 text-white font-bold text-sm text-center tracking-widest">
+                ⚠️STILL IN WIP!
+            </div>
         </div>
     );
 };
